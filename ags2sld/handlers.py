@@ -6,11 +6,12 @@ import os
 import requests
 from django.conf import settings
 from lxml.etree import tostring
-from slugify import Slugify
+from slugify import slugify
 
 import sld
 
-SLUGIFIER = Slugify(separator='_')
+def SLUGIFIER(text):
+    return slugify(text, separator='_')
 
 
 class Service(object):
