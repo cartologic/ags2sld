@@ -133,3 +133,5 @@ obj/**
 .pytest_cache
 tmp/**
 .python-version
+
+.idea
