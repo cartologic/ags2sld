@@ -6,12 +6,12 @@ import os
 import requests
 from django.conf import settings
 from lxml.etree import tostring
-from slugify import slugify
+from django.utils.text import slugify
 
 import sld
 
 def SLUGIFIER(text):
-    return slugify(text, separator='_')
+    return slugify(text)
 
 
 class Service(object):
@@ -286,10 +286,10 @@ class Layer(object):
                 converter(rule, symbol)
 
     def _render_esriGeometryMultipoint(self, rule, symbol):
-        print "_render_esriGeometryMultipoint - TODO"
+        print("_render_esriGeometryMultipoint - TODO")
 
     def _convert_esriPMS(self, rule, symbol, img_type='img'):
-        print "_convert_esriPMS"
+        print("_convert_esriPMS")
 
         symbolizer = rule.create_symbolizer('Point')
         graphic = symbolizer.create_element("sld", 'Graphic')
@@ -318,7 +318,7 @@ class Layer(object):
         externalGraphic.Format = sld_icon_format
 
     def _convert_esriSFS(self, rule, symbol):
-        print "_convert_esriSFS"
+        print("_convert_esriSFS")
 
         symbolizer = rule.create_symbolizer('Polygon')
 
@@ -343,7 +343,7 @@ class Layer(object):
                                        str(stroke_color[3] / 255))
 
     def _convert_esriSLS(self, rule, symbol):
-        print "_convert_esriSLS"
+        print("_convert_esriSLS")
 
         symbolizer = rule.create_symbolizer('Line')
 
@@ -362,14 +362,14 @@ class Layer(object):
             stroke.create_cssparameter('stroke-linejoin', 'bevel')
 
     def _convert_esriSLSDash(self, rule, symbol):
-        print "_convert_esriSLSDash"
+        print("_convert_esriSLSDash")
         rule.LineSymbolizer.Stroke.create_cssparameter('stroke-linecap',
                                                        'square')
         rule.LineSymbolizer.Stroke.create_cssparameter('stroke-dasharray',
                                                        '4 2')
 
     def _convert_esriSMS(self, rule, symbol):
-        print "_convert_esriSMS"
+        print("_convert_esriSMS")
         symbolizer = rule.create_symbolizer('Point')
 
         symbol_style = symbol.get('style')
@@ -377,7 +377,7 @@ class Layer(object):
         style_converter(rule, symbolizer, symbol)
 
     def _convert_esriTS(self, rule, labelExpression, labelPlacement, symbol):
-        print "_convert_esriTS"
+        print("_convert_esriTS")
         symbolizer = rule.create_symbolizer('Text')
 
         label = symbolizer.create_label()
@@ -419,7 +419,7 @@ class Layer(object):
 
     # esriStyles
     def _convert_esriSMSCircle(self, rule, symbolizer, symbol):
-        print "_convert_esriSMSCircle"
+        print("_convert_esriSMSCircle")
         graphic = symbolizer.create_element("sld", 'Graphic')
         graphic.Size = str(symbol.get('size'))
 
@@ -434,19 +434,19 @@ class Layer(object):
         fill.create_cssparameter('fill-opacity', fill_opacity)
 
     def _convert_esriSLSDashDotDot(self, rule, symbol):
-        print "_convert_esriSLSDashDotDot - TODO"
+        print("_convert_esriSLSDashDotDot - TODO")
 
     def _convert_esriSFSSolid(self, rule, symbol):
-        print "_convert_esriSFSSolid - TODO"
+        print("_convert_esriSFSSolid - TODO")
 
     def _convert_esriSLSSolid(self, rule, symbol):
-        print "_convert_esriSLSSolid - TODO"
+        print("_convert_esriSLSSolid - TODO")
 
     def _convert_esriTypeDefault(self, rule, symbol):
-        print "_convert_esriTypeDefault"
+        print("_convert_esriTypeDefault")
 
     def _convert_esriStyleDefault(self, rule, symbol):
-        print "_convert_esriStyleDefault"
+        print("_convert_esriStyleDefault")
 
     def _convert_color(self, color):
         r, g, b, a = color
