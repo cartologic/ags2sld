@@ -497,7 +497,7 @@ class Layer(object):
                     self.sld_doc._node,
                     pretty_print=True,
                     encoding="UTF-8",
-                    xml_declaration=True))
+                    xml_declaration=True).decode())
         # TODO: use logger instead of print function
         print("  {}".format(os.path.basename(sld_file_path)))
 
